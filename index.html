@@ -336,6 +336,7 @@
     async function fetchProfile() {
       template.profile.webId = state.query.webId || state.user.webId
       const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
+      const VCARD = $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
       const SOLID = $rdf.Namespace('http://www.w3.org/ns/solid/terms#');
       const store = $rdf.graph();
       const fetcher = new $rdf.Fetcher(store, { fetch: session.fetch });
@@ -343,7 +344,7 @@
       // Load the person's data into the store
       await fetcher.load(template.profile.webId);
       // Display their details
-      const name = store.any($rdf.sym(template.profile.webId), FOAF('name'));
+      const name = store.any($rdf.sym(template.profile.webId), FOAF('name')) || store.any($rdf.sym(template.profile.webId), VCARD('fn'));
       const img = store.any($rdf.sym(template.profile.webId), FOAF('img'));
       template.profile.publicTypeIndex = store.any($rdf.sym(template.profile.webId), SOLID('publicTypeIndex'), null, $rdf.sym(template.profile.webId.split('#')[0]));
       //console.log("publicTypeIndex", publicTypeIndex)
