@@ -1,0 +1,12 @@
+{
+  "@context": ["https://www.w3.org/ns/solid/oidc-context.jsonld"],
+
+  "client_id": "https://markbook.5apps.com/clientid.jsonld",
+  "client_name": "markbook",
+  "redirect_uris": ["https://markbook.5apps.com/"],
+  "grant_types" : ["refresh_token","authorization_code"],
+  "response_types" : ["code"],
+  "default_max_age" : 3600,
+  "require_auth_time" : true
+}
+
