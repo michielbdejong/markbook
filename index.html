@@ -178,7 +178,7 @@
     async function init() {
       sessionInfo = await session.handleIncomingRedirect();
       console.log(sessionInfo);
-      state.loggedIn = sessionInfo.isLoggedIn;
+      state.loggedIn = sessionInfo?.isLoggedIn;
       state.user.webId =  sessionInfo.webId;
       if (state.loggedIn) {
         fetchProfile();
@@ -456,12 +456,12 @@
       login.addEventListener("click", () => {
         session.login({
           oidcIssuer: 'https://pivot.pondersource.com', // FIXME: allow user to choose
-          // clientId: 'https://markbook.5apps.com/clientid.jsonld', // FIXME: add this
+          // clientId: 'https://markbook.5apps.com/clientid.jsonld', // FIXME: uncomment this
         })
       });
-      logout.addEventListener("click", () => {
+      logout.addEventListener("click", async () => {
+        await session.logout();
         state.loggedIn = false
-        sesssion.logout();
         render();
       });
 
