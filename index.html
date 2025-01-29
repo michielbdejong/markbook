@@ -334,7 +334,7 @@
       template.profile.webId = state.query.webId || state.user.webId
       const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
       const SOLID = $rdf.Namespace('http://www.w3.org/ns/solid/terms#');
-      const store = $rdf.graph();
+      const store = $rdf.graph({ fetch: session.fetch });
       const fetcher = new $rdf.Fetcher(store);
       // Load the person's data into the store
       await fetcher.load(template.profile.webId);
@@ -358,7 +358,7 @@
     async function fetchPublicTypeIndex() {
       const BOOKMARK = $rdf.Namespace('http://www.w3.org/2002/01/bookmark#');
       const SOLID = $rdf.Namespace('http://www.w3.org/ns/solid/terms#');
-      const store = $rdf.graph();
+      const store = $rdf.graph({ fetch: session.fetch });
       const fetcher = new $rdf.Fetcher(store);
       // Load the person's data into the store
       await fetcher.load(template.profile.publicTypeIndex);
@@ -396,7 +396,7 @@
       const SOLID = $rdf.Namespace('http://www.w3.org/ns/solid/terms#');
       const RDF = $rdf.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#');
       const DC = $rdf.Namespace('http://purl.org/dc/terms/')
-      const store = $rdf.graph();
+      const store = $rdf.graph({ fetch: session.fetch });
       const fetcher = new $rdf.Fetcher(store)
       // Load the person's data into the store
       template.profile.bookmarkInstance = state.query.bookmarkDoc || template.profile.bookmarkInstance
