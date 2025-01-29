@@ -180,6 +180,9 @@
       console.log(sessionInfo);
       state.loggedIn = sessionInfo.isLoggedIn;
       state.user.webId =  sessionInfo.webId;
+      if (state.loggedIn) {
+        fetchProfile();
+      }
       addListeners();
       hamburgerHelper();
       processQueryString();
@@ -336,6 +339,7 @@
       const SOLID = $rdf.Namespace('http://www.w3.org/ns/solid/terms#');
       const store = $rdf.graph();
       const fetcher = new $rdf.Fetcher(store, { fetch: session.fetch });
+      console.log('fetching profile', template.profile.webId);
       // Load the person's data into the store
       await fetcher.load(template.profile.webId);
       // Display their details
