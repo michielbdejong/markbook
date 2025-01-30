@@ -383,7 +383,7 @@
             }`
         // Send a PATCH request to update the source
         console.log("sending PATCH query to", template.profile.publicTypeIndex.value, query)
-        solid.auth.fetch(template.profile.publicTypeIndex.value, {
+        session.fetch(template.profile.publicTypeIndex.value, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/sparql-update' },
           body: query,
@@ -450,7 +450,7 @@
           }`
         // Send a PATCH request to update the source
         console.log("query", query)
-        solid.auth.fetch(source, {
+        session.fetch(source, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/sparql-update' },
           body: query,
