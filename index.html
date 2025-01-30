@@ -178,7 +178,9 @@
     state.query = {} // query string user
 
     async function init() {
-      sessionInfo = await session.handleIncomingRedirect();
+      sessionInfo = await session.handleIncomingRedirect({
+        restorePreviousSession: true,
+      });
       console.log(sessionInfo);
       state.loggedIn = sessionInfo?.isLoggedIn;
       state.user.webId =  sessionInfo.webId;
